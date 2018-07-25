@@ -1,0 +1,27 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+/* Header styles */
+header {
+  border: 5px solid black;
+  border-radius: 50%;
+  text-align: center;
+  margin: 10px 0 20px 0;
+}
+/* Nav Styles */
+.nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* Body Styles */
+.bookmark-container {
+  border: 5px solid black;
+}
+.empty-list-message {
+  padding: 10px;
+}
+
+
+
