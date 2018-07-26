@@ -16,6 +16,7 @@ const store = (function() {
   };
   return {
     bookmarks: [],
+    miniumumRating: 0,
     addBookmark,
     deleteBookmark,
     findById,

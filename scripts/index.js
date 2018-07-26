@@ -38,6 +38,7 @@ function bindEventListeners() {
   bookmarkList.deleteSingleBookmark();
   bookmarkList.expandBookmarks();
   bookmarkList.changeStarRating();
+  bookmarkList.minimumRatingChange();
 }
 
 $(document).ready(function() {
