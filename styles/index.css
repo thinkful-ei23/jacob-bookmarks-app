@@ -3,31 +3,39 @@
   box-sizing: border-box;
   text-align: center;
 }
-button {
-  border-radius: 50%;
+.main {
+  width: 40%;
+  margin: auto;
+  border: 1px solid black;
 }
 /* Header styles */
 header {
-  border: 5px solid black;
-  border-radius: 50%;
+  border: 1px solid black;
   text-align: center;
-  margin: 10px 0 20px 0;
+  margin: 10px 2em 20px 2em;
 }
 /* Nav Styles */
 .nav {
   text-align: center;
   margin-bottom: 20px;
 }
+.new-bookmark-form {
+  border: 1px solid black;
+  margin: 2em;
+  padding: 10px;
+}
 /* Body Styles */
 .bookmark-container {
-  border: 5px solid black;
+  border: 1px solid black;
+  margin: 2em;
 }
 .empty-list-message {
   padding: 10px;
 }
 li {
   list-style: none;
-  border: 5px solid black;
+  border: 1px solid black;
+  margin: 1em;
 }
 .checked {
   color: orange;
