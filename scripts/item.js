@@ -9,7 +9,6 @@ const item = (function() {
   const create = function(name, url, description, stars) {
     const rating = Number(stars);
     return {
-      id: cuid(),
       title: name,
       url: url,
       desc: description,

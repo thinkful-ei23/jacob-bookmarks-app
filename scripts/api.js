@@ -25,9 +25,22 @@ const api = (function() {
       success: callback
     });
   };
+  const changeRating = function(id, newRating, callback) {
+    let starCount = { "rating": newRating};
+    let strStarCount = JSON.stringify(starCount);
+    $.ajax({
+      url: `${BASE_URL}/bookmarks/${id}`,
+      method: 'PATCH',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: strStarCount,
+      success: callback
+    });
+  };
   return {
     getBookmarks,
     createItem,
     deleteItem,
+    changeRating,
   };
 }());

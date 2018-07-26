@@ -37,6 +37,7 @@ function bindEventListeners() {
   });
   bookmarkList.deleteSingleBookmark();
   bookmarkList.expandBookmarks();
+  bookmarkList.changeStarRating();
 }
 
 $(document).ready(function() {
