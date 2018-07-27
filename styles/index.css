@@ -1,18 +1,39 @@
+/* 
+font-family: 'Varela Round', sans-serif;
+font-family: 'Cairo', sans-serif; */
+/* #3AB795 Keppel
+#A0E8AF Teal Dear
+#86BAA1 Dark-Sea Green
+#EDEAD0 Eggshell
+#ED6A5A Terra Cota */
+
+
 /* Global Styles */
 * {
   box-sizing: border-box;
   text-align: center;
+  font-family: 'Varela Round', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 .main {
   width: 40%;
+  top: 25px;
   margin: auto;
   border: 1px solid black;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 /* Header styles */
 header {
   border: 1px solid black;
   text-align: center;
   margin: 10px 2em 20px 2em;
+}
+h1 {
+  padding: 15px 20px 15px 20px;
 }
 /* Nav Styles */
 .nav {
@@ -23,6 +44,22 @@ header {
   border: 1px solid black;
   margin: 2em;
   padding: 10px;
+}
+.min-rating {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    background-color: DodgerBlue;
+  }
+
+.add-bookmark-button, .min-rating, button{
+  padding: 10px 10px 10px 10px;
+  margin: 0 25px 0 25px;
+  background-color: DodgerBlue;
+  color: #ffffff;
 }
 /* Body Styles */
 .bookmark-container {
@@ -35,15 +72,18 @@ header {
 li {
   list-style: none;
   border: 1px solid black;
-  margin: 1em;
+  margin: 2em;
 }
 .checked {
   color: orange;
 }
+.star-rating {
+  padding: 5px;
+  font-size: 30px;
+}
 .delete {
   padding: 5px;
   margin-bottom: 10px;
-  
 }
 
 
