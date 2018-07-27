@@ -2,7 +2,22 @@
 /* global $ item api store*/
 
 const bookmarkList = (function() {
-  
+
+  function generateError(err) {
+    let message = '';
+    if (err.responseJSON && err.responseJSON.message) {
+      message = err.responseJSON.message;
+    } else {
+      message = `${err.code} Server Error`;
+    }
+
+    return `
+      <section class="error-content">
+        <p>${message}</p>
+        <button id="cancel-error">X</button> 
+      </section>
+    `;
+  }
   const generateBookmarkString = function(item) {
     let colorChooser = ['#FF6B35', '#F7C59F', '#c6c6b3', '#004E89', '#1A659E'][Math.floor(Math.random()*5)];
       
@@ -31,6 +46,12 @@ const bookmarkList = (function() {
   };
 
   const render = function() {
+    if (store.error) {
+      const el = generateError(store.error);
+      $('.error-container').html(el);
+    } else {
+      $('.error-container').empty();
+    }
     updateStoreState();
     let bookmarks = store.bookmarks;
     const fullBookmarkString = generateFullBookmarkListString(bookmarks);
@@ -49,6 +70,10 @@ const bookmarkList = (function() {
       api.createItem(newItem, function(response) {
         newItem.id = response.id;
         store.addBookmark(newItem);
+        render();
+      }, (err) => {
+        console.log(err);
+        store.setError(err);
         render();
       });
     });
@@ -94,15 +119,32 @@ const bookmarkList = (function() {
       render();
     });
   };
+  function handleCloseError() {
+    $('.error-container').on('click', '#cancel-error', () => {
+      store.setError(null);
+      render();
+    });
+  }
+
+  const handleBookmarkListFunctions =function() {
+    captureNewBookmarkInfo();
+    deleteSingleBookmark();
+    expandBookmarks();
+    changeStarRating();
+    minimumRatingChange();
+    handleCloseError();
+  };
+
+
+
   return {
     generateBookmarkString,
-    captureNewBookmarkInfo,
+   
     render,
-    deleteSingleBookmark,
-    expandBookmarks,
-    changeStarRating,
+   
     updateStoreState,
-    minimumRatingChange
+    
+    handleBookmarkListFunctions,
   };
 }());
 

@@ -14,6 +14,9 @@ const store = (function() {
     const bookmark = this.findById(id);
     bookmark.expanded = !bookmark.expanded;
   };
+  const setError = function(error) {
+    this.error = error;
+  };
   return {
     bookmarks: [],
     miniumumRating: 0,
@@ -21,5 +24,6 @@ const store = (function() {
     deleteBookmark,
     findById,
     toggleExpanded,
+    setError,
   };
 }());

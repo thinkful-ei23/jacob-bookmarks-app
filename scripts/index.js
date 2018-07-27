@@ -46,15 +46,13 @@ function addBookmarkButton() {
 function bindEventListeners() {
   addBookmarkButton();
   closeAddBookmarkButton();
-  bookmarkList.captureNewBookmarkInfo();
+  
   api.getBookmarks((response) => {
     response.forEach((object) => store.addBookmark(object));
     bookmarkList.render();
   });
-  bookmarkList.deleteSingleBookmark();
-  bookmarkList.expandBookmarks();
-  bookmarkList.changeStarRating();
-  bookmarkList.minimumRatingChange();
+  
+  bookmarkList.handleBookmarkListFunctions();
 }
 
 $(document).ready(function() {
