@@ -70,10 +70,6 @@ h1 {
   margin: 2em;
   padding: 10px;
 }
-.form-container {
-  border: 1px solid grey;
-  border-radius: 10%;
-}
 .min-rating {
   color: #ffffff;
   padding: 8px 16px;
@@ -84,14 +80,16 @@ h1 {
   background-color: #86BAA1;
 }
 
-.add-bookmark-button, .min-rating, button{
-  padding: 10px 10px 10px 10px;
+.add-bookmark-button, .min-rating, button, select{
+  padding: 15px 15px 15px 15px;
   margin: 0 25px 0 25px;
   background-color: #8DA1B9;
   color: #ffffff;
   -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  
+  border-radius: 50%;
 }
 /* Input */
 .form-grid-container {
