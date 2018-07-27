@@ -3,6 +3,36 @@
 
 const bookmarkList = (function() {
 
+  function closeAddBookmarkButton() {
+    $('.js-add-new-bookmark-container').on('click','.js-cancel-button', function() {
+      $('.js-input-hidden').prop('hidden', true);
+      $('.js-new-bookmark-form').remove();
+    });
+  }
+  // listen for Add Bookmark button
+  function addBookmarkButton() {
+    $('.js-add-bookmark-button').on('click', function() {
+      $('.js-input-hidden').prop('hidden', false);
+      $('.js-add-new-bookmark-container').html(
+        `<form class="js-new-bookmark-form new-bookmark-form">
+          <div class="form-container">
+            <h3><label for="js-new-bookmark-form">Add Your New Bookmark</label></h3>
+            <div class="form-grid-container">
+              <label for="js-new-bookmark-title" class="form-grid">Enter a title</label>
+              <input type="text" name="new-bookmark-title" class="js-new-bookmark-title form-grid" placeholder="eg. Facebook" required>
+              <label for="js-new-bookmark-url" class="form-grid">Enter the URL</label>
+              <input type="text" name="new-bookmark-url" class="js-new-bookmark-url form-grid" placeholder="eg www.aol.com" required>
+              <label for="js-new-bookmark-description" class="form-grid">Enter a description</label>
+              <textarea rows="4" type="text" name="js-new-bookmark-description" class="js-new-bookmark-description form-grid" placeholder="AOL is a web portal and online service provider based in New York." required></textarea>
+              <label for="js-new-bookmark-rating" class="form-grid">Enter a Rating</label>
+              <input type="number" name="js-new-bookmark-rating" class="js-new-bookmark-rating form-grid" placeholder="Min: 1, max: 5" min="1" max="5" required>
+            </div>
+            <button type="submit">Add New Bookmark</button>
+            <button class="js-cancel-button" type="button">CANCEL</button>
+          </div>
+        </form>`);
+    });
+  }
   function generateError(err) {
     let message = '';
     if (err.responseJSON && err.responseJSON.message) {
@@ -10,7 +40,7 @@ const bookmarkList = (function() {
     } else {
       message = `${err.code} Server Error`;
     }
-
+    $('.error-container').prop('hidden', false);
     return `
       <section class="error-content">
         <p>${message}</p>
@@ -56,6 +86,7 @@ const bookmarkList = (function() {
     let bookmarks = store.bookmarks;
     const fullBookmarkString = generateFullBookmarkListString(bookmarks);
     $('.js-bookmark-list').html(fullBookmarkString);
+    hiddenElementAttrChange();
   };
 
   function captureNewBookmarkInfo() {
@@ -66,6 +97,7 @@ const bookmarkList = (function() {
       const newDescription = $('.js-new-bookmark-description').val();
       const newStarRating = $('.js-new-bookmark-rating').val();
       $('.js-new-bookmark-form').remove(); 
+      $('.js-input-hidden').prop('hidden', true);
       const newItem = item.create(newTitle, newUrl, newDescription, newStarRating);
       api.createItem(newItem, function(response) {
         newItem.id = response.id;
@@ -122,28 +154,32 @@ const bookmarkList = (function() {
   function handleCloseError() {
     $('.error-container').on('click', '#cancel-error', () => {
       store.setError(null);
+      $('.error-container').prop('hidden', true);
       render();
     });
   }
 
+  function hiddenElementAttrChange() {
+    if (store.bookmarks.length === 0) {
+      $('ul').prop('hidden', true);
+    } else {
+      $('ul').prop('hidden', false);
+    }
+  }
+
   const handleBookmarkListFunctions =function() {
+    closeAddBookmarkButton();
+    addBookmarkButton();
     captureNewBookmarkInfo();
     deleteSingleBookmark();
     expandBookmarks();
     changeStarRating();
     minimumRatingChange();
     handleCloseError();
+    hiddenElementAttrChange();
   };
-
-
-
   return {
-    generateBookmarkString,
-   
     render,
-   
-    updateStoreState,
-    
     handleBookmarkListFunctions,
   };
 }());

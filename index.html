@@ -25,11 +25,11 @@
             <option value="1">Show All</option>
           </select>
       </nav>
-      <div class="error-container"></div>
-      <section class="js-add-new-bookmark-container input-container">
+      <div class="error-container" aria-live="assertive" hidden="true"></div>
+      <section class="js-add-new-bookmark-container js-input-hidden input-container" aria-live="assertive" hidden="true">
       </section>
       <section class='bookmark-container'>
-        <ul class='bookmark-list js-bookmark-list'>
+        <ul class='bookmark-list js-bookmark-list' aria-live="assertive" hidden="false">
         </ul>
       </section>
     </main>
