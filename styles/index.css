@@ -39,6 +39,7 @@ a {
 button:hover, select:hover {
   cursor: pointer;
   background-color: #ED6A5A;
+  font-size: .75em;
 }
 /* Header styles */
 header {
@@ -88,7 +89,6 @@ h1 {
   -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
-  
   border-radius: 50%;
 }
 /* Input */
@@ -133,6 +133,9 @@ label {
   background-color: white;
   margin: 2em;
   border-radius: 10%;
+  -webkit-box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
+-moz-box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
+box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
 }
 .empty-list-message {
   padding: 10px;
@@ -143,6 +146,9 @@ li {
   box-shadow: -1px 0px 29px -9px;
   margin: 3em;
   word-wrap: break-word;
+  -webkit-box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
+-moz-box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
+box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
 }
 li p {
   padding: 10%;
@@ -155,10 +161,15 @@ h2 {
 }
 .fa-star:hover {
   cursor: pointer;
+  font-size: 40px;
 }
 .star-rating {
   padding: 5px;
   font-size: 30px;
+}
+.js-li-expand:hover {
+  cursor: pointer;
+  width: 5%;
 }
 .delete {
   padding: 5px;
