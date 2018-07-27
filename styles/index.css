@@ -177,7 +177,7 @@ h2 {
 }
 .js-bookmark-description {
   display: block;
-  width: 80%;
+  width: 100%;
 }
 /* Media Queries */
 @media (min-width: 200px) {

@@ -143,7 +143,7 @@ const bookmarkList = (function() {
         const bookmarkObject = store.findById(id);
         bookmarkObject.rating = starRating;
         render();
-      });
+      }, onErrorFunction);
     });
   };
   const minimumRatingChange = function() {
@@ -153,22 +153,22 @@ const bookmarkList = (function() {
       render();
     });
   };
-  function handleCloseError() {
+  const handleCloseError = function() {
     $('.error-container').on('click', '#cancel-error', () => {
       store.setError(null);
       $('.error-container').prop('hidden', true);
       render();
     });
-  }
+  };
 
-  function hiddenElementAttrChange() {
+  const hiddenElementAttrChange = function() {
     if (store.bookmarks.length === 0) {
       $('ul').prop('hidden', true);
     } else {
       $('ul').prop('hidden', false);
     }
-  }
-  function handleDescriptionChange() {
+  };
+  const handleDescriptionChange = function() {
     $('.js-bookmark-list').on('click', '.js-change-description', function(event) {
       const newDesc = $('.js-bookmark-description').val();
       let id = $(this).closest('li').data('item-id');
@@ -176,9 +176,9 @@ const bookmarkList = (function() {
         const bookmarkObject = store.findById(id);
         bookmarkObject.desc = newDesc;
         render();
-      });
+      }, onErrorFunction);
     });
-  }
+  };
 
   const handleBookmarkListFunctions =function() {
     closeAddBookmarkButton();

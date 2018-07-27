@@ -26,7 +26,7 @@ const api = (function() {
       error: onError
     });
   };
-  const changeRating = function(id, newRating, callback) {
+  const changeRating = function(id, newRating, callback, onError) {
     let starCount = { "rating": newRating};
     let strStarCount = JSON.stringify(starCount);
     $.ajax({
@@ -35,10 +35,11 @@ const api = (function() {
       dataType: 'json',
       contentType: 'application/json',
       data: strStarCount,
-      success: callback
+      success: callback,
+      error: onError
     });
   };
-  const changeDescription = function(id, newDesc, callback) {
+  const changeDescription = function(id, newDesc, callback, onError) {
     let descObj = { "desc": newDesc};
     let strDescObj = JSON.stringify(descObj);
     $.ajax({
@@ -47,7 +48,8 @@ const api = (function() {
       dataType: 'json',
       contentType: 'application/json',
       data: strDescObj,
-      success: callback
+      success: callback,
+      error: onError
     });
   };
   return {
