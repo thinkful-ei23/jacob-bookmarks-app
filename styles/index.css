@@ -106,7 +106,7 @@ h3 {
   width: fit-content;
 }
 input {
-  font-size: 20px;
+  font-size: 15px;
 }
 label {
   font-size: 20px;
@@ -191,16 +191,17 @@ h2 {
     flex-direction: row;
     background-color: #788585;
     flex-wrap: wrap;
-    /* margin: auto; */
+    margin: auto;
+    width:100%;
   }
   .form-grid {
     display: flex; 
     flex-basis: calc(50% - 50px);  
-    
     flex-direction: column;
     padding-top: 15px;
     padding-bottom: 15px;
-    margin: auto
+    margin: auto;
+    width: 100%;
     }
 }
 @media (max-width: 520px) {
@@ -212,5 +213,8 @@ h2 {
   h1 {
     font-size: 20px;
     line-height: 1em;
+  }
+  .form-grid {
+    width: 100%
   }
 }
