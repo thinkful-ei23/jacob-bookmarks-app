@@ -8,7 +8,6 @@ font-family: 'Cairo', sans-serif; */
 #ED6A5A Terra Cota 
 #9AC4F8 Baby Blue Eyes*/
 
-
 /* Global Styles */
 * {
   box-sizing: border-box;
@@ -19,6 +18,7 @@ font-family: 'Cairo', sans-serif; */
 }
 .main {
   width: 40%;
+  min-height: 600px;
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -33,18 +33,28 @@ a {
   text-decoration: none;
   color: black;
 }
-button:hover {
+button:hover, select:hover {
   cursor: pointer;
   background-color: #ED6A5A;
 }
 /* Header styles */
 header {
-  border: 1px solid black;
   text-align: center;
   margin: 10px 2em 20px 2em;
+  overflow: auto;
+  display: inline-flex;
+  -webkit-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+  -moz-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+  box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+border: 2px solid black;
+border-radius: 50%;
 }
 h1 {
+  display: inline;
+  top: 25px;
   padding: 15px 20px 15px 20px;
+  background-color: #9AC4F8;
+  line-height: 2.5em;
 }
 /* Nav Styles */
 .nav {
@@ -52,9 +62,14 @@ h1 {
   margin-bottom: 20px;
 }
 .new-bookmark-form {
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 10%;
   margin: 2em;
   padding: 10px;
+}
+.form-container {
+  border: 1px solid grey;
+  border-radius: 10%;
 }
 .min-rating {
     color: #ffffff;
@@ -81,10 +96,13 @@ h1 {
   flex-direction: row;
   background-color: #86BAA1;
   flex-wrap: wrap;
-  /* padding: 10px; */
+}
+input, textarea {
+  border: 2px solid grey;
 }
 h3 {
   background: #ED6A5A;
+  position: relative
 }
 input {
   font-size: 20px;
@@ -136,6 +154,39 @@ h2 {
   padding: 5px;
   margin-bottom: 10px;
 }
-
-
-
+/* Media Queries */
+@media (min-width: 200px) {
+  .main {
+    width: 90%;
+  }
+  li {
+    margin: 5%;
+  }
+}
+@Media (min-width: 600px) {
+  .main {
+    width: 600px;
+  }
+  li {
+    margin: 3em;
+  }
+}
+@Media (min-width: 900px) {
+  .main {
+    width: 700px;
+  }
+  li {
+    margin: 3em;
+  }
+}
+@media (max-width: 520px) {
+  h1 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 430px) {
+  h1 {
+    font-size: 20px;
+    line-height: 1em;
+  }
+}
