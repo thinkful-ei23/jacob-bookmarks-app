@@ -15,6 +15,7 @@ font-family: 'Cairo', sans-serif; */
   font-family: 'Varela Round', sans-serif;
   margin: 0;
   padding: 0;
+  color: white;
 }
 .main {
   width: 40%;
@@ -32,6 +33,9 @@ font-family: 'Cairo', sans-serif; */
 a {
   text-decoration: none;
   color: black;
+  padding: 10px;
+  border: 2px solid grey;
+  background-color: #EDEAD0;
 }
 button:hover, select:hover {
   cursor: pointer;
@@ -136,6 +140,10 @@ li {
   border: 1px solid black;
   box-shadow: -1px 0px 29px -9px;
   margin: 3em;
+  word-wrap: break-word;
+}
+li p {
+  padding: 10%;
 }
 h2 {
   margin-top: 20px;
@@ -154,6 +162,7 @@ h2 {
   padding: 5px;
   margin-bottom: 10px;
 }
+
 /* Media Queries */
 @media (min-width: 200px) {
   .main {
@@ -178,6 +187,23 @@ h2 {
   li {
     margin: 3em;
   }
+}
+@media (max-width: 600px) {
+  .form-grid-container {
+    display: inline-block;
+    flex-direction: row;
+    background-color: #86BAA1;
+    flex-wrap: wrap;
+  }
+  .form-grid {
+    display: flex; 
+    flex-basis: calc(50% - 50px);  
+    
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 15px 15px 15px 15px;
+    }
 }
 @media (max-width: 520px) {
   h1 {
