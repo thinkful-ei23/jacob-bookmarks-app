@@ -100,13 +100,12 @@ h1 {
 }
 input, textarea {
   border: 2px solid grey;
+  font-size: 20px;
+  color: black;
 }
 h3 {
   background: #ED6A5A;
   width: fit-content;
-}
-input {
-  font-size: 15px;
 }
 label {
   font-size: 20px;

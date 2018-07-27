@@ -6,16 +6,16 @@ const api = (function() {
   const getBookmarks = function(callback) {
     $.getJSON(`${BASE_URL}/bookmarks`, callback);
   };
-  const createItem = function(name, callback) {
-    const newItem = name;
-    const strJSON =  JSON.stringify(newItem);
+  const createItem = function(name, callback, onError) {
+    const strJSON =  JSON.stringify(name);
     $.ajax({
       url: `${BASE_URL}/bookmarks`,
       method: 'POST',
       dataType: 'json',
       contentType: 'application/json',
       data: strJSON,
-      success: callback
+      success: callback,
+      error: onError
     });
   };
   const deleteItem = function(id, callback) {
