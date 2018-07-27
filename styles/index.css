@@ -23,19 +23,18 @@ font-family: 'Cairo', sans-serif; */
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid black;
+  border: 2px solid #788585;
   border-radius: 10%;
-  background-color: azure;
+  background-color: #8FC0A9;
   -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
 }
 a {
   text-decoration: none;
-  color: black;
   padding: 10px;
   border: 2px solid grey;
-  background-color: #EDEAD0;
+  background-color: #7DD181;
 }
 button:hover, select:hover {
   cursor: pointer;
@@ -50,14 +49,14 @@ header {
   -webkit-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
   -moz-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
   box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
-border: 2px solid black;
-border-radius: 50%;
+  border: 2px solid #788585;
+  border-radius: 50%;
 }
 h1 {
   display: inline;
   top: 25px;
   padding: 15px 20px 15px 20px;
-  background-color: #9AC4F8;
+  background-color: #DE9151;
   line-height: 2.5em;
 }
 /* Nav Styles */
@@ -76,19 +75,19 @@ h1 {
   border-radius: 10%;
 }
 .min-rating {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
-    user-select: none;
-    background-color: #86BAA1;
-  }
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+  background-color: #86BAA1;
+}
 
 .add-bookmark-button, .min-rating, button{
   padding: 10px 10px 10px 10px;
   margin: 0 25px 0 25px;
-  background-color: #9AC4F8;
+  background-color: #8DA1B9;
   color: #ffffff;
   -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
@@ -98,7 +97,7 @@ h1 {
 .form-grid-container {
   display: flex;
   flex-direction: row;
-  background-color: #86BAA1;
+  background-color: #788585;
   flex-wrap: wrap;
 }
 input, textarea {
@@ -106,7 +105,7 @@ input, textarea {
 }
 h3 {
   background: #ED6A5A;
-  position: relative
+  width: fit-content;
 }
 input {
   font-size: 20px;
@@ -192,8 +191,9 @@ h2 {
   .form-grid-container {
     display: inline-block;
     flex-direction: row;
-    background-color: #86BAA1;
+    background-color: #788585;
     flex-wrap: wrap;
+    /* margin: auto; */
   }
   .form-grid {
     display: flex; 
@@ -202,7 +202,7 @@ h2 {
     flex-direction: column;
     padding-top: 15px;
     padding-bottom: 15px;
-    margin: 15px 15px 15px 15px;
+    margin: auto
     }
 }
 @media (max-width: 520px) {
