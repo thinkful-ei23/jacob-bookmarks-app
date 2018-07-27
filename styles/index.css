@@ -5,7 +5,8 @@ font-family: 'Cairo', sans-serif; */
 #A0E8AF Teal Dear
 #86BAA1 Dark-Sea Green
 #EDEAD0 Eggshell
-#ED6A5A Terra Cota */
+#ED6A5A Terra Cota 
+#9AC4F8 Baby Blue Eyes*/
 
 
 /* Global Styles */
@@ -18,13 +19,23 @@ font-family: 'Cairo', sans-serif; */
 }
 .main {
   width: 40%;
-  top: 25px;
-  margin: auto;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid black;
+  border-radius: 10%;
+  background-color: azure;
+  -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
+  -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
+  box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
 }
 a {
   text-decoration: none;
   color: black;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #ED6A5A;
 }
 /* Header styles */
 header {
@@ -52,19 +63,52 @@ h1 {
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
     user-select: none;
-    background-color: DodgerBlue;
+    background-color: #86BAA1;
   }
 
 .add-bookmark-button, .min-rating, button{
   padding: 10px 10px 10px 10px;
   margin: 0 25px 0 25px;
-  background-color: DodgerBlue;
+  background-color: #9AC4F8;
   color: #ffffff;
+  -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
 }
+/* Input */
+.form-grid-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #86BAA1;
+  flex-wrap: wrap;
+  /* padding: 10px; */
+}
+h3 {
+  background: #ED6A5A;
+}
+input {
+  font-size: 20px;
+}
+label {
+  font-size: 20px;
+  color: #EDEAD0;
+}
+.form-grid {
+display: flex; 
+flex-basis: calc(50% - 50px);  
+/* justify-content: center; */
+flex-direction: column;
+padding-top: 15px;
+padding-bottom: 15px;
+margin: 15px 15px 15px 15px;
+}
+
 /* Body Styles */
 .bookmark-container {
   border: 1px solid black;
+  background-color: white;
   margin: 2em;
+  border-radius: 10%;
 }
 .empty-list-message {
   padding: 10px;
@@ -72,10 +116,17 @@ h1 {
 li {
   list-style: none;
   border: 1px solid black;
-  margin: 2em;
+  box-shadow: -1px 0px 29px -9px;
+  margin: 3em;
+}
+h2 {
+  margin-top: 20px;
 }
 .checked {
   color: orange;
+}
+.fa-star:hover {
+  cursor: pointer;
 }
 .star-rating {
   padding: 5px;

@@ -11,7 +11,21 @@ function closeAddBookmarkButton() {
 function addBookmarkButton() {
   $('.js-add-bookmark-button').on('click', function() {
     $('.js-add-new-bookmark-container').html(
-      '<form class="js-new-bookmark-form new-bookmark-form"><h3><label for="js-new-bookmark-form">Add Your New Bookmark</label></h3><p><label for="js-new-bookmark-title">Enter a title</label><input type="text" name="new-bookmark-title" class="js-new-bookmark-title" placeholder="eg. Facebook" required></p><p><label for="js-new-bookmark-url">Enter the URL</label><input type="text" name="new-bookmark-url" class="js-new-bookmark-url" placeholder="eg. www.aol.com" required></p><p><label for="js-new-bookmark-description">Enter a description</label><input type="text" name="js-new-bookmark-description" class="js-new-bookmark-description" placeholder="AOL is a web portal and online service provider based in New York." required></p><p><label for="js-new-bookmark-rating">Enter a Rating</label><input type="number" name="js-new-bookmark-rating" class="js-new-bookmark-rating" placeholder="Min: 1, max: 5" min="1" max="5" required></p><button type="submit">Add New Bookmark</button><button class="js-cancel-button" type="button">CANCEL</button></form>');
+      `<form class="js-new-bookmark-form new-bookmark-form">
+        <h3><label for="js-new-bookmark-form">Add Your New Bookmark</label></h3>
+        <div class="form-grid-container">
+          <label for="js-new-bookmark-title" class="form-grid">Enter a title</label>
+          <input type="text" name="new-bookmark-title" class="js-new-bookmark-title form-grid" placeholder="eg. Facebook" required>
+          <label for="js-new-bookmark-url" class="form-grid">Enter the URL</label>
+          <input type="text" name="new-bookmark-url" class="js-new-bookmark-url form-grid" placeholder="eg www.aol.com" required>
+          <label for="js-new-bookmark-description" class="form-grid">Enter a description</label>
+          <input type="text" name="js-new-bookmark-description" class="js-new-bookmark-description form-grid" placeholder="AOL is a web portal and online service provider based in New York." required>
+          <label for="js-new-bookmark-rating" class="form-grid">Enter a Rating</label>
+          <input type="number" name="js-new-bookmark-rating" class="js-new-bookmark-rating form-grid" placeholder="Min: 1, max: 5" min="1" max="5" required>
+        </div>
+        <button type="submit">Add New Bookmark</button>
+        <button class="js-cancel-button" type="button">CANCEL</button>
+      </form>`);
   });
 }
 
