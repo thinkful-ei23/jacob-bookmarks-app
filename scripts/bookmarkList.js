@@ -55,7 +55,7 @@ const bookmarkList = (function() {
       return '';
     } else {
       let expandedSection = '';
-      if (item.expanded === true) expandedSection =`<p>${item.desc}</p><a href="${item.url}">Visit ${item.title}</a><button class="js-delete-bookmark">Delete</button>`;
+      if (item.expanded === true) expandedSection =`<textarea class="js-bookmark-description">${item.desc}</textarea><button class="js-change-description">Submit Change</button><a href="${item.url}">Visit ${item.title}'s Site</a><button class="js-delete-bookmark">Delete</button>`;
       let starString = '';
       for (let i = 1; i <= 5; i++) {
         let checkedClass = '';
@@ -89,6 +89,12 @@ const bookmarkList = (function() {
     hiddenElementAttrChange();
   };
 
+  const onErrorFunction = (err) => {
+    console.log(err);
+    store.setError(err);
+    render();
+  };
+
   function captureNewBookmarkInfo() {
     $('.js-add-new-bookmark-container').on('submit', function(event) {
       event.preventDefault();
@@ -103,11 +109,7 @@ const bookmarkList = (function() {
         newItem.id = response.id;
         store.addBookmark(newItem);
         render();
-      }, (err) => {
-        console.log(err);
-        store.setError(err);
-        render();
-      });
+      }, onErrorFunction);
     });
   }
   const getIdFromElement = function(element) {
@@ -121,7 +123,7 @@ const bookmarkList = (function() {
       api.deleteItem(id, function() {
         store.deleteBookmark(id);
         render();
-      });
+      }, onErrorFunction);
     });
   };
   const expandBookmarks = function() {
@@ -166,6 +168,17 @@ const bookmarkList = (function() {
       $('ul').prop('hidden', false);
     }
   }
+  function handleDescriptionChange() {
+    $('.js-bookmark-list').on('click', '.js-change-description', function(event) {
+      const newDesc = $('.js-bookmark-description').val();
+      let id = $(this).closest('li').data('item-id');
+      api.changeDescription(id, newDesc, function(response){
+        const bookmarkObject = store.findById(id);
+        bookmarkObject.desc = newDesc;
+        render();
+      });
+    });
+  }
 
   const handleBookmarkListFunctions =function() {
     closeAddBookmarkButton();
@@ -177,6 +190,7 @@ const bookmarkList = (function() {
     minimumRatingChange();
     handleCloseError();
     hiddenElementAttrChange();
+    handleDescriptionChange();
   };
   return {
     render,

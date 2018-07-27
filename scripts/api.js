@@ -18,11 +18,12 @@ const api = (function() {
       error: onError
     });
   };
-  const deleteItem = function(id, callback) {
+  const deleteItem = function(id, callback, onError) {
     $.ajax({
       url: `${BASE_URL}/bookmarks/${id}`,
       method: 'DELETE',
-      success: callback
+      success: callback,
+      error: onError
     });
   };
   const changeRating = function(id, newRating, callback) {
@@ -37,10 +38,23 @@ const api = (function() {
       success: callback
     });
   };
+  const changeDescription = function(id, newDesc, callback) {
+    let descObj = { "desc": newDesc};
+    let strDescObj = JSON.stringify(descObj);
+    $.ajax({
+      url: `${BASE_URL}/bookmarks/${id}`,
+      method: 'PATCH',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: strDescObj,
+      success: callback
+    });
+  };
   return {
     getBookmarks,
     createItem,
     deleteItem,
     changeRating,
+    changeDescription,
   };
 }());
