@@ -18,13 +18,10 @@ font-family: 'Cairo', sans-serif; */
   color: white;
 }
 .main {
-  width: 40%;
+  /* width: 40%; */
   min-height: 600px;
-  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  border: 2px solid #788585;
-  border-radius: 10%;
   background-color: #8FC0A9;
   -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
@@ -186,9 +183,6 @@ svg {
 }
 /* Media Queries */
 @media (min-width: 200px) {
-  .main {
-    width: 90%;
-  }
   li {
     margin: 5%;
   }
@@ -196,6 +190,9 @@ svg {
 @Media (min-width: 600px) {
   .main {
     width: 600px;
+    margin-top: 50px;
+    border: 2px solid #788585;
+    border-radius: 10%;
   }
   li {
     margin: 3em;
@@ -210,6 +207,9 @@ svg {
   }
 }
 @media (max-width: 600px) {
+  .main {
+    padding-top: 50px;
+  }
   .form-grid-container {
     display: inline-block;
     flex-direction: row;
@@ -233,7 +233,15 @@ svg {
     font-size: 25px;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 425px) {
+  
+  main {
+    width: 100%;
+    border: 0px solid #788585;
+    margin: 0;
+    border-radius: 0%;
+    margin-top: 0;
+  }
   h1 {
     font-size: 20px;
     line-height: 1em;
