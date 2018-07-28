@@ -60,9 +60,9 @@ const bookmarkList = (function() {
       for (let i = 1; i <= 5; i++) {
         let checkedClass = '';
         if (i <= item.rating) checkedClass = 'checked';
-        starString+= `<span class="fa fa-star ${checkedClass}  js-star" name="js-star${i}"></span>`;
+        starString+= `<span class="fa fa-star ${checkedClass} js-star" tabindex="0" name="js-star${i}"></span>`;
       }
-      return `<li data-item-id="${item.id}" style="background-color:${colorChooser}"><h2>${item.title}</h2><div class="js-star-rating star-rating">${starString}</div>${expandedSection}<svg width="4%" aria-hidden="true" data-prefix="fas" data-icon="expand" class="svg-inline--fa fa-expand fa-w-14 js-li-expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg></li>`;
+      return `<li data-item-id="${item.id}" style="background-color:${colorChooser}"><h2>${item.title}</h2><div class="js-star-rating star-rating">${starString}</div>${expandedSection}<svg tabindex="0" width="4%" aria-hidden="true" data-prefix="fas" data-icon="expand" class="svg-inline--fa fa-expand fa-w-14 js-li-expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg></li>`;
     }
   };
   const generateFullBookmarkListString = function(bookmarksArray) {
@@ -127,23 +127,27 @@ const bookmarkList = (function() {
     });
   };
   const expandBookmarks = function() {
-    $('.js-bookmark-list').on('click', '.js-li-expand', function(event) {
-      const id = getIdFromElement(event.currentTarget);
-      store.toggleExpanded(id);
-      render();
+    $('.js-bookmark-list').on('click keypress', '.js-li-expand', function(event) {
+      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+        const id = getIdFromElement(event.currentTarget);
+        store.toggleExpanded(id);
+        render();
+      }
     });
   };
 
   const changeStarRating = function() {
-    $('.js-bookmark-list').on('click', '.js-star', function(event) {
-      let rating = $(this).attr('name');
-      let starRating = rating[7];
-      let id = $(this).closest('li').data('item-id');
-      api.changeRating(id, starRating, function(response) {
-        const bookmarkObject = store.findById(id);
-        bookmarkObject.rating = starRating;
-        render();
-      }, onErrorFunction);
+    $('.js-bookmark-list').on('click keypress', '.js-star', function(event) {
+      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+        let rating = $(this).attr('name');
+        let starRating = rating[7];
+        let id = $(this).closest('li').data('item-id');
+        api.changeRating(id, starRating, function(response) {
+          const bookmarkObject = store.findById(id);
+          bookmarkObject.rating = starRating;
+          render();
+        }, onErrorFunction);
+      }
     });
   };
   const minimumRatingChange = function() {
