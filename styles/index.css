@@ -35,6 +35,7 @@ a {
   padding: 10px;
   border: 2px solid grey;
   background-color: #7DD181;
+  display: block;
 }
 button:hover, select:hover {
   cursor: pointer;
@@ -178,6 +179,10 @@ h2 {
 .js-bookmark-description {
   display: block;
   width: 100%;
+}
+svg {
+  display: inline-block;
+  
 }
 /* Media Queries */
 @media (min-width: 200px) {
