@@ -49,7 +49,21 @@ const bookmarkList = (function() {
     `;
   }
   const generateBookmarkString = function(item) {
-    let colorChooser = ['#FF6B35', '#F7C59F', '#c6c6b3', '#004E89', '#1A659E'][Math.floor(Math.random()*5)];
+    let colorChooser ='';
+    if (store.background_color === 0) {
+      colorChooser = '#FF6B35';
+    } else if (store.background_color === 1) {
+      colorChooser = '#F7C59F';
+    } else if (store.background_color === 2) {
+      colorChooser = '#c6c6b3';
+    } else if (store.background_color === 3) {
+      colorChooser = '#C9FFE2';
+    } else if (store.background_color === 4) {
+      colorChooser = '#1A659E';
+    } 
+    store.background_color+= 1;
+    if (store.background_color === 5) store.background_color = 0;
+   
       
     if (item.rating < store.minimumRating) {
       return '';
@@ -67,6 +81,7 @@ const bookmarkList = (function() {
   };
   const generateFullBookmarkListString = function(bookmarksArray) {
     const stringedBookmarks = bookmarksArray.map(eachObject => generateBookmarkString(eachObject));
+    store.background_color = 0;
     return stringedBookmarks.join('');
   };
   const updateStoreState = function () {
