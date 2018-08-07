@@ -20,6 +20,7 @@ const store = (function() {
   return {
     bookmarks: [],
     miniumumRating: 0,
+    background_color: 0,
     addBookmark,
     deleteBookmark,
     findById,
