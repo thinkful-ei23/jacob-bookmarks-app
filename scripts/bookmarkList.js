@@ -26,9 +26,11 @@ const bookmarkList = (function() {
               <textarea rows="4" type="text" name="js-new-bookmark-description" class="js-new-bookmark-description form-grid" placeholder="AOL is a web portal and online service provider based in New York." required></textarea>
               <label for="js-new-bookmark-rating" class="form-grid">Enter a Rating</label>
               <input type="number" name="js-new-bookmark-rating" class="js-new-bookmark-rating form-grid" placeholder="Min: 1, max: 5" min="1" max="5" required>
+              <div class='button-container'>
+                <button type="submit">ADD NEW</button>
+                <button class="js-cancel-button" type="button">CANCEL</button>
+              </div>
             </div>
-            <button type="submit">Add New Bookmark</button>
-            <button class="js-cancel-button" type="button">CANCEL</button>
           </div>
         </form>`);
     });
@@ -49,7 +51,21 @@ const bookmarkList = (function() {
     `;
   }
   const generateBookmarkString = function(item) {
-    let colorChooser = ['#FF6B35', '#F7C59F', '#c6c6b3', '#004E89', '#1A659E'][Math.floor(Math.random()*5)];
+    let colorChooser ='';
+    if (store.background_color === 0) {
+      colorChooser = '#FF6B35';
+    } else if (store.background_color === 1) {
+      colorChooser = '#F7C59F';
+    } else if (store.background_color === 2) {
+      colorChooser = '#c6c6b3';
+    } else if (store.background_color === 3) {
+      colorChooser = '#C9FFE2';
+    } else if (store.background_color === 4) {
+      colorChooser = '#1A659E';
+    } 
+    store.background_color+= 1;
+    if (store.background_color === 5) store.background_color = 0;
+   
       
     if (item.rating < store.minimumRating) {
       return '';
@@ -60,21 +76,26 @@ const bookmarkList = (function() {
       for (let i = 1; i <= 5; i++) {
         let checkedClass = '';
         if (i <= item.rating) checkedClass = 'checked';
-        starString+= `<span class="fa fa-star ${checkedClass}  js-star" name="js-star${i}"></span>`;
+        starString+= `<span class="fa fa-star ${checkedClass} js-star" tabindex="0" name="js-star${i}"></span>`;
       }
-      return `<li data-item-id="${item.id}" style="background-color:${colorChooser}"><h2>${item.title}</h2><div class="js-star-rating star-rating">${starString}</div>${expandedSection}<svg width="4%" aria-hidden="true" data-prefix="fas" data-icon="expand" class="svg-inline--fa fa-expand fa-w-14 js-li-expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg></li>`;
+      return `<li data-item-id="${item.id}" style="background-color:${colorChooser}"><h2>${item.title}</h2><div class="js-star-rating star-rating">${starString}</div>${expandedSection}<br><svg tabindex="0" width="4%" aria-hidden="true" data-prefix="fas" data-icon="expand" class="svg-inline--fa fa-expand fa-w-14 js-li-expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg></li>`;
     }
   };
+
+
   const generateFullBookmarkListString = function(bookmarksArray) {
     const stringedBookmarks = bookmarksArray.map(eachObject => generateBookmarkString(eachObject));
+    store.background_color = 0;
     return stringedBookmarks.join('');
   };
   const updateStoreState = function () {
-    api.getBookmarks(function(response) {
-      
+    api.getBookmarks(function() {
+      if (store.bookmarks.length === 0) {
+        $('.js-bookmark-list').append('<li style="background-color: #ED6A5A"><h5>YOU HAVE ZERO BOOKMARKS</h5></li>');
+      }
     });
   };
-
+     
   const render = function() {
     if (store.error) {
       const el = generateError(store.error);
@@ -86,7 +107,7 @@ const bookmarkList = (function() {
     let bookmarks = store.bookmarks;
     const fullBookmarkString = generateFullBookmarkListString(bookmarks);
     $('.js-bookmark-list').html(fullBookmarkString);
-    hiddenElementAttrChange();
+    // hiddenElementAttrChange();
   };
 
   const onErrorFunction = (err) => {
@@ -127,23 +148,27 @@ const bookmarkList = (function() {
     });
   };
   const expandBookmarks = function() {
-    $('.js-bookmark-list').on('click', '.js-li-expand', function(event) {
-      const id = getIdFromElement(event.currentTarget);
-      store.toggleExpanded(id);
-      render();
+    $('.js-bookmark-list').on('click keypress', '.js-li-expand', function(event) {
+      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+        const id = getIdFromElement(event.currentTarget);
+        store.toggleExpanded(id);
+        render();
+      }
     });
   };
 
   const changeStarRating = function() {
-    $('.js-bookmark-list').on('click', '.js-star', function(event) {
-      let rating = $(this).attr('name');
-      let starRating = rating[7];
-      let id = $(this).closest('li').data('item-id');
-      api.changeRating(id, starRating, function(response) {
-        const bookmarkObject = store.findById(id);
-        bookmarkObject.rating = starRating;
-        render();
-      }, onErrorFunction);
+    $('.js-bookmark-list').on('click keypress', '.js-star', function(event) {
+      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
+        let rating = $(this).attr('name');
+        let starRating = rating[7];
+        let id = $(this).closest('li').data('item-id');
+        api.changeRating(id, starRating, function(response) {
+          const bookmarkObject = store.findById(id);
+          bookmarkObject.rating = starRating;
+          render();
+        }, onErrorFunction);
+      }
     });
   };
   const minimumRatingChange = function() {
@@ -161,13 +186,13 @@ const bookmarkList = (function() {
     });
   };
 
-  const hiddenElementAttrChange = function() {
-    if (store.bookmarks.length === 0) {
-      $('ul').prop('hidden', true);
-    } else {
-      $('ul').prop('hidden', false);
-    }
-  };
+  // const hiddenElementAttrChange = function() {
+  //   if (store.bookmarks.length === 0) {
+  //     $('ul').prop('hidden', true);
+  //   } else {
+  //     $('ul').prop('hidden', false);
+  //   }
+  // };
   const handleDescriptionChange = function() {
     $('.js-bookmark-list').on('click', '.js-change-description', function(event) {
       const newDesc = $('.js-bookmark-description').val();
@@ -189,7 +214,7 @@ const bookmarkList = (function() {
     changeStarRating();
     minimumRatingChange();
     handleCloseError();
-    hiddenElementAttrChange();
+    // hiddenElementAttrChange();
     handleDescriptionChange();
   };
   return {
@@ -197,4 +222,3 @@ const bookmarkList = (function() {
     handleBookmarkListFunctions,
   };
 }());
-
