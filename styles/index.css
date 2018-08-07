@@ -178,8 +178,9 @@ li {
 box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
 /* min-height: 140px; */
 }
-li h2 {
+ul li h2 {
   padding-top: 10px;
+  font-size: 30px;
 }
 li p {
   padding: 10%;
