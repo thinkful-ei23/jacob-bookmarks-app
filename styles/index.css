@@ -1,224 +1,296 @@
-'use strict';
-/* global $ item api store*/
+/* 
+font-family: 'Varela Round', sans-serif;
+font-family: 'Cairo', sans-serif; */
+/* #3AB795 Keppel
+#A0E8AF Teal Dear
+#86BAA1 Dark-Sea Green
+#EDEAD0 Eggshell
+#ED6A5A Terra Cota 
+#9AC4F8 Baby Blue Eyes*/
 
-const bookmarkList = (function() {
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Varela Round', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+.main {
+  /* width: 40%; */
+  min-height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #8FC0A9;
+  -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
+  -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
+  box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
+}
+a {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-decoration: none;
+  padding: 10px;
+  border: 2px solid grey;
+  background-color: #7DD181;
+  display: block;
+}
+a:hover {
+  background-color: #8adb8e;
+  color: black;
+}
+button:hover, select:hover {
+  cursor: pointer;
+  background-color: #ED6A5A;
+  /* font-size: .75em; */
+}
+/* Header styles */
+header {
+  text-align: center;
+  margin: 10px 2em 20px 2em;
+  overflow: auto;
+  display: inline-flex;
+  -webkit-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+  -moz-box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+  box-shadow: 0px 0px 116px -23px rgba(0,0,0,0.58);
+  border: 2px solid white;
+  border-radius: 50%;
+}
+h1 {
+  display: inline;
+  top: 25px;
+  padding: 15px 20px 15px 20px;
+  background-color: #DE9151;
+  line-height: 2.5em;
+}
+/* Nav Styles */
+.nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.new-bookmark-form {
+  border: 2px solid black;
+  border-radius: 10%;
+  margin: 2em;
+  padding: 10px;
+}
+.min-rating {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+  background-color: #86BAA1;
+}
 
-  function closeAddBookmarkButton() {
-    $('.js-add-new-bookmark-container').on('click','.js-cancel-button', function() {
-      $('.js-input-hidden').prop('hidden', true);
-      $('.js-new-bookmark-form').remove();
-    });
+.add-bookmark-button, .min-rating, button, select{
+  padding: 15px 15px 15px 15px;
+  margin: 0 25px 0 25px;
+  background-color: #8DA1B9;
+  color: #ffffff;
+  -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
+  border-radius: 50%;
+}
+select {
+  height: 48px;
+  border-radius: 50%;
+
+ 
+
+}
+/* Input */
+.form-grid-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #788585;
+  flex-wrap: wrap;
+  border-radius: 30px 30px 50px 50px;
+  padding-bottom: 15px;
+}
+.button-container {
+  margin: 0 auto;
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 30px;
+}
+input, textarea {
+  border: 2px solid grey;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+h3 {
+  background: #ED6A5A;
+  margin: 0 auto;
+  width: fit-content;
+  border-radius: 50px 50px 0px 0px;
+-moz-border-radius: 50px 50px 0px 0px;
+-webkit-border-radius: 50px 50px 0px 0px;
+padding: 15px 25px 10px 25px;
+}
+label {
+  font-size: 20px;
+  color: #EDEAD0;
+}
+.form-grid {
+  display: flex; 
+  flex-basis: calc(50% - 50px);  
+  /* justify-content: center; */
+  flex-direction: column;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 15px 15px 15px 15px;
+}
+.error-content {
+  display: inline-block;
+  border: 5px solid white;
+  background: red;
+  padding: 10px;
+}
+
+/* Body Styles */
+.bookmark-container {
+  border: 1px solid black;
+  background-color: white;
+  margin: 2em;
+  border-radius: 10%;
+  -webkit-box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
+-moz-box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
+box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
+}
+.empty-list-message {
+  padding: 10px;
+}
+li {
+  list-style: none;
+  /* border: 1px solid black; */
+  box-shadow: -1px 0px 29px -9px;
+  margin: 3em;
+  word-wrap: break-word;
+  -webkit-box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
+-moz-box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
+box-shadow: 2px 0px 27px -2px rgba(120,133,133,1);
+/* min-height: 140px; */
+}
+li h2 {
+  padding-top: 10px;
+}
+li p {
+  padding: 10%;
+}
+h2 {
+  margin-top: 20px;
+}
+.checked {
+  color: orange;
+}
+.fa-star:hover {
+  cursor: pointer;
+  font-size: 40px;
+}
+.star-rating {
+  padding: 5px;
+  font-size: 30px;
+  min-height: 53px;
+}
+.js-li-expand:hover {
+  cursor: pointer;
+  width: 5%;
+}
+.delete {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.js-bookmark-description {
+  display: block;
+  width: 100%;
+}
+svg {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 25px;
+}
+h5 {
+  padding-top: 10px;
+  font-size: 40px;
+}
+/* Media Queries */
+@media (min-width: 200px) {
+  li {
+    margin: 5%;
   }
-  // listen for Add Bookmark button
-  function addBookmarkButton() {
-    $('.js-add-bookmark-button').on('click', function() {
-      $('.js-input-hidden').prop('hidden', false);
-      $('.js-add-new-bookmark-container').html(
-        `<form class="js-new-bookmark-form new-bookmark-form">
-          <div class="form-container">
-            <h3><label for="js-new-bookmark-form">Add Your New Bookmark</label></h3>
-            <div class="form-grid-container">
-              <label for="js-new-bookmark-title" class="form-grid">Enter a title</label>
-              <input type="text" name="new-bookmark-title" class="js-new-bookmark-title form-grid" placeholder="eg. Facebook" required>
-              <label for="js-new-bookmark-url" class="form-grid">Enter the URL</label>
-              <input type="text" name="new-bookmark-url" class="js-new-bookmark-url form-grid" placeholder="eg www.aol.com" required>
-              <label for="js-new-bookmark-description" class="form-grid">Enter a description</label>
-              <textarea rows="4" type="text" name="js-new-bookmark-description" class="js-new-bookmark-description form-grid" placeholder="AOL is a web portal and online service provider based in New York." required></textarea>
-              <label for="js-new-bookmark-rating" class="form-grid">Enter a Rating</label>
-              <input type="number" name="js-new-bookmark-rating" class="js-new-bookmark-rating form-grid" placeholder="Min: 1, max: 5" min="1" max="5" required>
-              <div class='button-container'>
-                <button type="submit">ADD NEW</button>
-                <button class="js-cancel-button" type="button">CANCEL</button>
-              </div>
-            </div>
-          </div>
-        </form>`);
-    });
+}
+@Media (min-width: 600px) {
+  .main {
+    width: 600px;
+    margin-top: 50px;
+    border: 2px solid #788585;
+    border-radius: 10%;
   }
-  function generateError(err) {
-    let message = '';
-    if (err.responseJSON && err.responseJSON.message) {
-      message = err.responseJSON.message;
-    } else {
-      message = `${err.code} Server Error`;
+  li {
+    margin: 3em;
+  }
+}
+@Media (min-width: 900px) {
+  .main {
+    width: 700px;
+  }
+  li {
+    margin: 3em;
+  }
+}
+@media (max-width: 600px) {
+  .main {
+    padding-top: 50px;
+    height: 100%;
+  }
+
+  .form-grid-container {
+    display: inline-block;
+    flex-direction: row;
+    background-color: #788585;
+    flex-wrap: wrap;
+    margin: auto;
+    width:100%;
+
+  }
+  .form-grid {
+    display: flex; 
+    flex-basis: calc(50% - 50px);  
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: auto;
+    width: 100%;
     }
-    $('.error-container').prop('hidden', false);
-    return `
-      <section class="error-content">
-        <p>${message}</p>
-        <button id="cancel-error">X</button> 
-      </section>
-    `;
+}
+@media (max-width: 520px) {
+  h1 {
+    font-size: 25px;
   }
-  const generateBookmarkString = function(item) {
-    let colorChooser ='';
-    if (store.background_color === 0) {
-      colorChooser = '#FF6B35';
-    } else if (store.background_color === 1) {
-      colorChooser = '#F7C59F';
-    } else if (store.background_color === 2) {
-      colorChooser = '#c6c6b3';
-    } else if (store.background_color === 3) {
-      colorChooser = '#C9FFE2';
-    } else if (store.background_color === 4) {
-      colorChooser = '#1A659E';
-    } 
-    store.background_color+= 1;
-    if (store.background_color === 5) store.background_color = 0;
-   
-      
-    if (item.rating < store.minimumRating) {
-      return '';
-    } else {
-      let expandedSection = '';
-      if (item.expanded === true) expandedSection =`<textarea class="js-bookmark-description">${item.desc}</textarea><button class="js-change-description">Submit Change</button><a href="${item.url}">Visit ${item.title}'s Site</a><button class="js-delete-bookmark">Delete</button>`;
-      let starString = '';
-      for (let i = 1; i <= 5; i++) {
-        let checkedClass = '';
-        if (i <= item.rating) checkedClass = 'checked';
-        starString+= `<span class="fa fa-star ${checkedClass} js-star" tabindex="0" name="js-star${i}"></span>`;
-      }
-      return `<li data-item-id="${item.id}" style="background-color:${colorChooser}"><h2>${item.title}</h2><div class="js-star-rating star-rating">${starString}</div>${expandedSection}<br><svg tabindex="0" width="4%" aria-hidden="true" data-prefix="fas" data-icon="expand" class="svg-inline--fa fa-expand fa-w-14 js-li-expand" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 180V56c0-13.3 10.7-24 24-24h124c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H64v84c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12zM288 44v40c0 6.6 5.4 12 12 12h84v84c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12V56c0-13.3-10.7-24-24-24H300c-6.6 0-12 5.4-12 12zm148 276h-40c-6.6 0-12 5.4-12 12v84h-84c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h124c13.3 0 24-10.7 24-24V332c0-6.6-5.4-12-12-12zM160 468v-40c0-6.6-5.4-12-12-12H64v-84c0-6.6-5.4-12-12-12H12c-6.6 0-12 5.4-12 12v124c0 13.3 10.7 24 24 24h124c6.6 0 12-5.4 12-12z"></path></svg></li>`;
-    }
-  };
-
-
-  const generateFullBookmarkListString = function(bookmarksArray) {
-    const stringedBookmarks = bookmarksArray.map(eachObject => generateBookmarkString(eachObject));
-    store.background_color = 0;
-    return stringedBookmarks.join('');
-  };
-  const updateStoreState = function () {
-    api.getBookmarks(function() {
-      if (store.bookmarks.length === 0) {
-        $('.js-bookmark-list').append('<li style="background-color: #ED6A5A"><h5>YOU HAVE ZERO BOOKMARKS</h5></li>');
-      }
-    });
-  };
-     
-  const render = function() {
-    if (store.error) {
-      const el = generateError(store.error);
-      $('.error-container').html(el);
-    } else {
-      $('.error-container').empty();
-    }
-    updateStoreState();
-    let bookmarks = store.bookmarks;
-    const fullBookmarkString = generateFullBookmarkListString(bookmarks);
-    $('.js-bookmark-list').html(fullBookmarkString);
-    // hiddenElementAttrChange();
-  };
-
-  const onErrorFunction = (err) => {
-    console.log(err);
-    store.setError(err);
-    render();
-  };
-
-  function captureNewBookmarkInfo() {
-    $('.js-add-new-bookmark-container').on('submit', function(event) {
-      event.preventDefault();
-      const newTitle = $('.js-new-bookmark-title').val();
-      const newUrl = $('.js-new-bookmark-url').val();
-      const newDescription = $('.js-new-bookmark-description').val();
-      const newStarRating = $('.js-new-bookmark-rating').val();
-      $('.js-new-bookmark-form').remove(); 
-      $('.js-input-hidden').prop('hidden', true);
-      const newItem = item.create(newTitle, newUrl, newDescription, newStarRating);
-      api.createItem(newItem, function(response) {
-        newItem.id = response.id;
-        store.addBookmark(newItem);
-        render();
-      }, onErrorFunction);
-    });
+}
+@media (max-width: 425px) {
+  
+  main {
+    width: 100%;
+    height: 100%;
+    border: 0px solid #788585;
+    margin: 0;
+    border-radius: 0%;
+    margin-top: 0;
   }
-  const getIdFromElement = function(element) {
-    return $(element)
-      .closest('li')
-      .data('item-id');
-  };
-  const deleteSingleBookmark = function() {
-    $('.js-bookmark-list').on('click', '.js-delete-bookmark', function(event) {
-      const id = getIdFromElement(event.currentTarget);
-      api.deleteItem(id, function() {
-        store.deleteBookmark(id);
-        render();
-      }, onErrorFunction);
-    });
-  };
-  const expandBookmarks = function() {
-    $('.js-bookmark-list').on('click keypress', '.js-li-expand', function(event) {
-      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
-        const id = getIdFromElement(event.currentTarget);
-        store.toggleExpanded(id);
-        render();
-      }
-    });
-  };
-
-  const changeStarRating = function() {
-    $('.js-bookmark-list').on('click keypress', '.js-star', function(event) {
-      if (event.type === 'click' || (event.type === 'keypress' && event.which === 13)) {
-        let rating = $(this).attr('name');
-        let starRating = rating[7];
-        let id = $(this).closest('li').data('item-id');
-        api.changeRating(id, starRating, function(response) {
-          const bookmarkObject = store.findById(id);
-          bookmarkObject.rating = starRating;
-          render();
-        }, onErrorFunction);
-      }
-    });
-  };
-  const minimumRatingChange = function() {
-    $('.js-min-rating').on('change', function(event) {
-      const minRating = this.value;
-      store.minimumRating = minRating;
-      render();
-    });
-  };
-  const handleCloseError = function() {
-    $('.error-container').on('click', '#cancel-error', () => {
-      store.setError(null);
-      $('.error-container').prop('hidden', true);
-      render();
-    });
-  };
-
-  // const hiddenElementAttrChange = function() {
-  //   if (store.bookmarks.length === 0) {
-  //     $('ul').prop('hidden', true);
-  //   } else {
-  //     $('ul').prop('hidden', false);
-  //   }
-  // };
-  const handleDescriptionChange = function() {
-    $('.js-bookmark-list').on('click', '.js-change-description', function(event) {
-      const newDesc = $('.js-bookmark-description').val();
-      let id = $(this).closest('li').data('item-id');
-      api.changeDescription(id, newDesc, function(response){
-        const bookmarkObject = store.findById(id);
-        bookmarkObject.desc = newDesc;
-        render();
-      }, onErrorFunction);
-    });
-  };
-
-  const handleBookmarkListFunctions =function() {
-    closeAddBookmarkButton();
-    addBookmarkButton();
-    captureNewBookmarkInfo();
-    deleteSingleBookmark();
-    expandBookmarks();
-    changeStarRating();
-    minimumRatingChange();
-    handleCloseError();
-    // hiddenElementAttrChange();
-    handleDescriptionChange();
-  };
-  return {
-    render,
-    handleBookmarkListFunctions,
-  };
-}());
+  h1 {
+    font-size: 20px;
+    line-height: 1em;
+  }
+  .form-grid {
+    width: 100%
+  }
+}
