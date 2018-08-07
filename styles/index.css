@@ -207,6 +207,9 @@ h2 {
   padding: 5px;
   margin-bottom: 10px;
 }
+.js-delete-bookmark {
+  margin-bottom: 10px;
+}
 .js-bookmark-description {
   display: block;
   width: 100%;
