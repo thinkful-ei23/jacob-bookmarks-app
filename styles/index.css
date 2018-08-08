@@ -22,7 +22,7 @@ font-family: 'Cairo', sans-serif; */
   min-height: 600px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #8FC0A9;
+  background-color: #56fbae;
   -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
@@ -42,7 +42,7 @@ a:hover {
 }
 button:hover, select:hover {
   cursor: pointer;
-  background-color: #ED6A5A;
+  background-color: #fb567f;
   /* font-size: .75em; */
 }
 /* Header styles */
@@ -61,7 +61,7 @@ h1 {
   display: inline;
   top: 25px;
   padding: 15px 20px 15px 20px;
-  background-color: #9999ff;
+  background-color: #567ffb;
   line-height: 2.5em;
 }
 /* Nav Styles */
@@ -88,7 +88,7 @@ h1 {
 .add-bookmark-button, .min-rating, button, select{
   padding: 15px 15px 15px 15px;
   margin: 0 25px 0 25px;
-  background-color: #df80ff;
+  background-color: #d156fb;
   color: #ffffff;
   -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
@@ -126,7 +126,7 @@ input, textarea {
   margin-top: 10px;
 }
 h3 {
-  background: #ED6A5A;
+  background: #fb5656;
   margin: 0 auto;
   width: fit-content;
   border-radius: 50px 50px 0px 0px;
@@ -169,7 +169,7 @@ box-shadow: inset 2px 0px 27px -2px rgba(120,133,133,1);
 }
 li {
   list-style: none;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   box-shadow: -1px 0px 29px -9px;
   margin: 3em;
   word-wrap: break-word;
@@ -258,7 +258,7 @@ h5 {
   .form-grid-container {
     display: inline-block;
     flex-direction: row;
-    background-color: #788585;
+    background-color: #616b6b;
     flex-wrap: wrap;
     margin: auto;
     width:100%;
