@@ -22,7 +22,7 @@ font-family: 'Cairo', sans-serif; */
   min-height: 600px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #56fbae;
+  background-color: #9EE493;
   -webkit-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   -moz-box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
   box-shadow: -1px 0px 60px -6px rgba(0,0,0,0.32);
@@ -61,7 +61,7 @@ h1 {
   display: inline;
   top: 25px;
   padding: 15px 20px 15px 20px;
-  background-color: #567ffb;
+  background-color: #336699;
   line-height: 2.5em;
 }
 /* Nav Styles */
@@ -88,7 +88,7 @@ h1 {
 .add-bookmark-button, .min-rating, button, select{
   padding: 15px 15px 15px 15px;
   margin: 0 25px 0 25px;
-  background-color: #d156fb;
+  background-color: #86BBD8;
   color: #ffffff;
   -webkit-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
   -moz-box-shadow: -1px 0px 29px -9px rgba(0,0,0,0.47);
